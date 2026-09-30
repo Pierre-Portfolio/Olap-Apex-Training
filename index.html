@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OLAP & APEX Training</title>
+  <meta name="description" content="Formation OLAP et Oracle APEX, de débutant à intermédiaire : cours détaillés, schémas, 80 exercices corrigés, examen final, mémo et glossaire.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    /* Applique le thème mémorisé avant le premier rendu (évite un flash) */
+    try { var t = JSON.parse(localStorage.getItem('olapApex.theme')); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Ouvrir le sommaire" aria-controls="rail" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3 28 9.5v13L16 29 4 22.5v-13z" fill="none" stroke="var(--olap)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M4 9.5 16 16l12-6.5M16 16v13" fill="none" stroke="var(--olap)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M16 16 22 12.8v6.6L16 22.6z" fill="var(--apex)"/>
+      </svg>
+      <span><span class="o">OLAP</span> <span class="amp">&amp;</span> <span class="a">APEX</span> <span class="full">Training</span></span>
+    </a>
+    <span class="spacer"></span>
+    <div class="global-progress" title="Exercices faits (bleu : OLAP, rouge : APEX)">
+      <span class="label">Progression</span>
+      <span class="bar" aria-hidden="true"><span class="b-olap" id="bar-olap" style="width:0"></span><span class="b-apex" id="bar-apex" style="width:0"></span></span>
+      <span id="progress-text">0 / 80</span>
+    </div>
+    <button class="icon-btn" id="theme-btn" type="button" aria-label="Changer de thème"></button>
+  </header>
+
+  <div class="shell" id="top">
+    <nav class="rail" id="rail" aria-label="Sommaire"></nav>
+
+    <main id="content">
+      <div class="col">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">Parcours autonome · Débutant → Intermédiaire</p>
+            <h1>Comprendre l'<span class="o">OLAP</span>, construire avec <span class="a">APEX</span>.</h1>
+            <p class="lede">Première moitié : penser les données en cubes, dimensions et mesures, puis les interroger en SQL analytique. Seconde moitié : transformer ces données en applications web Oracle APEX, du premier rapport au tableau de bord sécurisé.</p>
+          </div>
+          <svg class="hero-cube" viewBox="0 0 250 230" role="img" aria-label="Cube OLAP à trois dimensions : Temps, Produit, Région. Une cellule est mise en évidence.">
+            <!-- faces -->
+            <path class="face-top" d="M125 20 215 65 125 110 35 65z"/>
+            <path class="face-left" d="M35 65 125 110v100L35 165z"/>
+            <path class="face-right" d="M215 65 125 110v100l90-45z"/>
+            <!-- grille 3x3 sur chaque face -->
+            <path class="grid" d="M65 50l90 45M95 35l90 45M65 80l90-45M95 95l90-45"/>
+            <path class="grid" d="M65 80v100M95 95v100M35 98.3l90 45M35 131.7l90 45"/>
+            <path class="grid" d="M155 95v100M185 80v100M125 143.3l90-45M125 176.7l90-45"/>
+            <!-- cellule en évidence (face droite, milieu) -->
+            <path class="hi" d="M155 128.3 185 113.3v33.4l-30 15z"/>
+            <path class="edge" d="M125 20 215 65v100l-90 45-90-45V65zM35 65l90 45 90-45M125 110v100"/>
+            <text x="10" y="200">Temps</text>
+            <text x="190" y="215">Produit</text>
+            <text x="176" y="30">Région</text>
+          </svg>
+        </section>
+
+        <div class="paths">
+          <article class="path part-olap">
+            <h2>1 · OLAP</h2>
+            <p>Du besoin décisionnel au SQL analytique : entrepôt, schéma en étoile, cube, hiérarchies, SCD, ROLLUP/CUBE.</p>
+            <ol id="path-olap"></ol>
+            <span class="meta" id="meta-olap"></span>
+          </article>
+          <article class="path part-apex">
+            <h2>2 · Oracle APEX</h2>
+            <p>Le low-code d'Oracle : pages, rapports, formulaires, logique PL/SQL, Dynamic Actions, sécurité, puis un tableau de bord OLAP complet.</p>
+            <ol id="path-apex"></ol>
+            <span class="meta" id="meta-apex"></span>
+          </article>
+        </div>
+
+        <div class="howto">
+          <div><strong>Lire</strong>Chaque notion commence par ses objectifs, puis le cours avec schémas et exemples SQL réels.</div>
+          <div><strong>Pratiquer</strong>5 exercices par notion : 3 QCM corrigés automatiquement et 2 questions ouvertes avec correction détaillée.</div>
+          <div><strong>Mesurer</strong>Votre progression est enregistrée dans ce navigateur. Terminez par l'examen final et le projet fil rouge.</div>
+        </div>
+      </div>
+      <!-- Parties, notions et annexes injectées par assets/js/app.js -->
+    </main>
+  </div>
+
+  <script src="assets/js/core.js"></script>
+  <script src="assets/js/notions/olap-01.js"></script>
+  <script src="assets/js/notions/olap-02.js"></script>
+  <script src="assets/js/notions/olap-03.js"></script>
+  <script src="assets/js/notions/olap-04.js"></script>
+  <script src="assets/js/notions/olap-05.js"></script>
+  <script src="assets/js/notions/olap-06.js"></script>
+  <script src="assets/js/notions/olap-07.js"></script>
+  <script src="assets/js/notions/olap-08.js"></script>
+  <script src="assets/js/notions/apex-01.js"></script>
+  <script src="assets/js/notions/apex-02.js"></script>
+  <script src="assets/js/notions/apex-03.js"></script>
+  <script src="assets/js/notions/apex-04.js"></script>
+  <script src="assets/js/notions/apex-05.js"></script>
+  <script src="assets/js/notions/apex-06.js"></script>
+  <script src="assets/js/notions/apex-07.js"></script>
+  <script src="assets/js/notions/apex-08.js"></script>
+  <script src="assets/js/extras.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
